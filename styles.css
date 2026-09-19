@@ -48,6 +48,10 @@ footer {
   text-transform: uppercase;
 }
 
+.brand span {
+  color: var(--muted);
+}
+
 .status {
   display: flex;
   align-items: center;
@@ -160,65 +164,85 @@ button:hover {
   font-size: 0.7rem;
 }
 
-.orbit {
+.console {
   position: relative;
-  width: min(34vw, 390px);
-  min-width: 270px;
-  aspect-ratio: 1;
+  width: min(38vw, 460px);
+  min-width: 320px;
   margin: 0 auto;
+  overflow: hidden;
   border: 1px solid var(--ink);
-  border-radius: 50%;
+  border-radius: 4px;
+  background: var(--paper);
+  box-shadow: 11px 11px 0 var(--yellow);
   animation: float 5s ease-in-out infinite;
 }
 
-.orbit::before,
-.orbit::after {
-  position: absolute;
-  content: '';
-  border-radius: 50%;
+.console-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
 }
 
-.orbit::before {
-  width: 38%;
-  aspect-ratio: 1;
-  top: 13%;
-  right: -7%;
+.console-bar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background: var(--coral);
 }
 
-.orbit::after {
-  width: 25%;
-  aspect-ratio: 1;
-  bottom: 8%;
-  left: -10%;
+.console-bar span:nth-child(2) {
   background: var(--yellow);
 }
 
-.orbit-line {
-  position: absolute;
-  inset: 23% -11%;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  transform: rotate(-28deg);
+.console-bar span:nth-child(3) {
+  background: #7aa78a;
 }
 
-.spark {
-  position: absolute;
-  top: 42%;
-  left: 42%;
-  width: 18%;
-  aspect-ratio: 1;
+.console-bar p {
+  margin: 0 0 0 auto;
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+.console-body {
+  min-height: 275px;
+  padding: 26px 22px;
+  color: var(--ink);
+  font-size: clamp(0.66rem, 1.1vw, 0.8rem);
+  line-height: 1.95;
+}
+
+.console-body p {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.line-number {
+  display: inline-block;
+  width: 35px;
+  color: #9aa8a6;
+  user-select: none;
+}
+
+.keyword {
+  color: var(--coral);
+}
+
+.string {
+  color: #37755d;
+}
+
+.cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.15em;
+  margin-left: 36px;
+  vertical-align: -0.2em;
   background: var(--ink);
-  clip-path: polygon(
-    50% 0,
-    61% 38%,
-    100% 50%,
-    61% 62%,
-    50% 100%,
-    39% 62%,
-    0 50%,
-    39% 38%
-  );
+  animation: blink 1s step-end infinite;
 }
 
 footer {
@@ -238,6 +262,12 @@ footer {
   }
 }
 
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 720px) {
   main {
     padding: 22px 24px 18px;
@@ -249,9 +279,10 @@ footer {
     padding: 58px 0 42px;
   }
 
-  .orbit {
+  .console {
     grid-row: 1;
-    width: min(72vw, 330px);
+    width: min(84vw, 360px);
+    min-width: 0;
   }
 
   h1 {
